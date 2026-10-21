@@ -23,10 +23,11 @@ class Tests(unittest.TestCase):
         self.assertEqual(move((0, -1), (0, 1), 5), (0, 4))
 
     def test_apply_command(self):
-        self.assertEqual(apply_command({'position': (0, -1), 'rotation': (-1, 0)}, 'R5'), {'position': (0, 4), 'rotation': (0, 1)})
+        self.assertEqual(apply_command({'position': (0, -1), 'rotation': (-1, 0), 'visited': {}, 'first_visited_twice': None}, 'R5'), {'position': (0, 4), 'rotation': (0, 1), 'visited': {(0, 4): 1}, 'first_visited_twice': None})
 
     def test_reduce_state(self):
-        self.assertEqual(reduce_state('R5'), {'position': (5, 0), 'rotation': (1, 0)})
+        self.assertEqual(reduce_state('R5'), {'position': (5, 0), 'rotation': (1, 0), 'visited': {(5, 0): 1}, 'first_visited_twice': None})
+
 
     def test_resolve(self):
         self.assertEqual(resolve('R5'), 5)
